@@ -1,0 +1,13 @@
+COE67-222 Operating Systems Lab 07 Report
+Name: Chitakan Sawaisri
+Student ID: 67121509
+
+1. The Convoy Effect (Phase 2):
+In FCFS, the "Convoy Effect" occurs when short processes are stuck waiting behind a massive, long-running CPU-heavy process. In our output, because P1 arrived first and required 10 burst units, P2 and P3 had to wait until Time 10 and Time 12 respectively before they could even start, significantly increasing the average waiting time to 7.33 units.
+
+2. Choosing the Time Quantum:
+- Large Quantum (e.g., Quantum = 100): The Round Robin scheduler begins to behave like the First-Come, First-Served (FCFS) algorithm because each process will likely finish entirely within its first time slice before the quantum expires.
+- Small Quantum (e.g., Quantum = 0.0001): The system suffers from excessive Context Switching overhead. The OS spends more time saving and restoring CPU registers/states between processes than performing actual useful computation, drastically degrading system performance.
+
+3. AI Context:
+Iteration-level Round Robin scheduling (Continuous Batching) prevents long user queries from starving short queries by interleaving token generation across multiple active requests. Instead of waiting for a 1000-token essay to fully complete, short queries (like a math question) get processed token-by-token alongside long ones. This drastically improves perceived latency and Time To First Token (TTFT), ensuring a smooth and responsive interactive experience for users.
