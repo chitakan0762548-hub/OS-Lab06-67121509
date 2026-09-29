@@ -1,0 +1,18 @@
+COE67-222 Operating Systems
+Name: Chitakan Sawaisri
+Student ID: 67121509
+Lab 06 Report
+
+1. FIFO vs LRU (Phase 2):
+- FIFO Total Page Faults: 9
+- LRU Total Page Faults: 7
+Explanation: LRU performed better because the memory reference string exhibits temporal locality. LRU tracks usage history and evicts the page that has not been accessed for the longest time, whereas FIFO blindly evicts the oldest page regardless of its actual usage, resulting in more page faults.
+
+2. Understanding Thrashing (Phase 3):
+- Scenario 1 (RAM access time): 0.3585 seconds
+- Scenario 2 (Disk swap/thrashing time): 1.3826 seconds
+- Performance Impact: Thrashing made the system 4 times slower.
+Definition: Thrashing is a condition where the operating system spends more time swapping pages between RAM and disk than executing actual program instructions due to insufficient physical memory. Scenario 2 takes significantly longer because continuous Disk I/O (read/write operations) is drastically slower than accessing physical RAM.
+
+3. AI Engineering Decision:
+Lowering the 'batch_size' reduces the amount of data and model weights loaded into memory per iteration. This ensures that the working set fits comfortably within the physical RAM, eliminating the need for the OS to swap pages to the disk, thereby resolving the thrashing problem and restoring normal training speed.
