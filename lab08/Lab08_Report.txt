@@ -1,0 +1,15 @@
+COE67-222 Operating Systems Lab 08 Report
+Name: Chitakan Sawaisri
+Student ID: 67121509
+
+1. Disk Scheduling (Phase 2):
+Looking at the output of disk_scheduler.py, why did the SCAN algorithm result in a significantly lower "Total Head Movement" compared to FCFS? Explain the logic behind the Elevator behavior.
+- Answer: The SCAN (Elevator) algorithm results in a significantly lower total head movement because it services requests sequentially in a single direction (sweeping across the disk tracks) until it reaches the end of the disk, rather than jumping back and forth randomly like FCFS. This mimics an elevator moving up and down to pick up passengers along its path, which drastically reduces mechanical wear and seek time.
+
+2. I/O Bound Concept:
+If an Operating System is described as being "I/O Bound" during a task, what does that actually mean for the CPU? Is the CPU at 100% usage or is it mostly idle? Why?
+- Answer: When a system is "I/O Bound," it means the speed of execution is limited by the time it takes to transfer data to and from secondary storage (Disk/I/O devices) rather than the CPU's processing speed. In this state, the CPU is mostly idle (low usage) because it spends most of its time waiting for the disk to read or write data before it can process the next instruction.
+
+3. AI Industry Connection (Phase 3):
+Explain why storing an AI image dataset as 1,000,000 separate .jpg files causes high I/O overhead and GPU starvation compared to packing them into a single sequential binary format (e.g., TFRecord, WebDataset, or HDF5).
+- Answer: Storing images as separate files forces the OS to perform a massive amount of random I/O operations (frequently opening, reading, and closing individual files, locating inodes, and checking permissions for each one). This causes high OS overhead and makes the disk head jump around. As a result, the data delivery slows down, causing the GPU to sit idle (GPU starvation) waiting for data. Packing them into a single continuous file allows sequential I/O, which is significantly faster and keeps the GPU fully fed with data.
