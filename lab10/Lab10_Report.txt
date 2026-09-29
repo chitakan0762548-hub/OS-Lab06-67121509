@@ -1,0 +1,27 @@
+COE67-222 Operating Systems Lab 10 Report (Final)
+Name: Chitakan Sawaisri
+Student ID: 67121509
+
+1. The Role of the Operating System:
+In this mini-project, our Python script simulated the major responsibilities of an Operating System.
+Match the specific code behavior in ultimate_cluster_os.py to the corresponding OS concept you learned throughout the semester:
+- File System & Permissions (Lab 9):
+[Explain which line of code simulated this and why Workload D failed]
+- Answer: Simulated using 'if not os.path.exists(dataset_path):'. Workload D failed because it requested 'secret_keys.txt' which did not exist on the filesystem, demonstrating OS-level file security and path validation.
+
+- Memory Management (Labs 5/6):
+[Explain how the OS prevented Thrashing by using the 'while loop for RAM allocation]
+- Answer: The OS used a 'while True' loop combined with 'self.ram_lock' to constantly check if 'self.available_ram_gb >= req_ram'. If insufficient RAM was available, the process waited gracefully instead of overloading or thrashing system memory.
+
+- Concurrency & Deadlocks (Labs 3/4):
+[Explain how the OS sorted the requested GPUs to avoid Circular Wait deadlocks]
+- Answer: The OS avoided circular wait deadlocks by sorting the requested GPU indices using 'sorted_gpus = sorted(req_gpus)'. This enforced a strict resource acquisition order across all competing threads.
+
+2. Hardware Utilization:
+Look at the output of your Live Dashboard. Explain how the OS successfully ran Workload A (LLaMA Training), Workload B (Preprocessing), and Workload C (Inference) AT THE SAME TIME without crashing. Why didn't they block each other?
+- Answer: They didn't block each other because they utilized complementary hardware resources managed by the OS scheduler and locks. Workload A consumed heavy RAM and GPUs 0-2, Workload B ran entirely on the CPU utilizing remaining RAM without needing any GPUs, and Workload C utilized the idle GPU 3. The OS efficiently multiplexed the hardware components.
+
+3. Course Reflection (AI Engineering Context):
+You are now applying for a role as a Machine Learning Operations (MLOps) Engineer.
+Write a short paragraph explaining how understanding Operating Systems (Process queues, RAM/Virtual Memory limits, Deadlock avoidance, File systems) gives you an advantage over a programmer who only knows how to write basic Python/PyTorch scripts.
+- Answer: Understanding Operating Systems gives an MLOps Engineer the ability to look beyond code syntax and deeply optimize infrastructure stability, resource allocation, and cluster scaling. While a standard developer might write functional PyTorch training scripts, an engineer with OS knowledge understands how to prevent memory thrashing during large model training, avoid deadlocks in distributed multi-GPU environments, handle concurrency efficiently via process queues, and secure model checkpoints at the kernel/file system level. This prevents catastrophic failures in enterprise-grade production clusters.
